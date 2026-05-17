@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
+/* ── Tailwind v4 theme (CSS-first config) ─────────────────── */
+@theme {
+  --color-white:     #FFFFFF;
+  --color-off-white: #F8FFFE;
+  --color-light:     #EBF8F5;
+  --color-teal:      #2BA98B;
+  --color-teal-l:    #4DC4A8;
+  --color-teal-d:    #1A7A64;
+  --color-teal-pale: #D4F0E8;
+  --color-ink:       #1A2A26;
+  --color-mid:       #4A7068;
+  --color-muted:     #8AADA8;
+  --color-amber:     #E8A830;
+  --color-coral:     #F07060;
+  --color-green-wa:  #25D366;
+
+  --font-display: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-body:    var(--font-dm-sans),  "DM Sans", system-ui, sans-serif;
+
+  --radius-pill:  24px;
+  --radius-card:  14px;
+  --radius-input: 8px;
+
+  --shadow-card: 0 4px 20px rgba(26, 42, 38, 0.08);
+}
+
+/* ── CSS değişkenleri (component'lerde var() ile kullanım) ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --white:        #FFFFFF;
+  --off-white:    #F8FFFE;
+  --light:        #EBF8F5;
+  --teal:         #2BA98B;
+  --teal-l:       #4DC4A8;
+  --teal-d:       #1A7A64;
+  --teal-pale:    #D4F0E8;
+  --ink:          #1A2A26;
+  --mid:          #4A7068;
+  --muted:        #8AADA8;
+  --line:         rgba(26, 42, 38, 0.08);
+  --amber:        #E8A830;
+  --coral:        #F07060;
+  --green-wa:     #25D366;
+  --surface:      #FFFFFF;
+  --nav-bg-solid: rgba(255, 255, 255, 0.95);
+  --nav-bg-blur:  rgba(255, 255, 255, 0.80);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Dark mode overrides ────────────────────────────────────── */
+/* html[data-theme="dark"] has specificity 0-1-1, beats :root at 0-1-0 */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --white:        #0D1A16;
+  --off-white:    #132018;
+  --light:        #1A2E26;
+  --teal-pale:    #1D3530;
+  --ink:          #E8F4F1;
+  --mid:          #9DBFBA;
+  --muted:        #5A8A84;
+  --line:         rgba(232, 244, 241, 0.08);
+  --surface:      #1A2E26;
+  --nav-bg-solid: rgba(13, 26, 22, 0.95);
+  --nav-bg-blur:  rgba(13, 26, 22, 0.80);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ─────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
