@@ -1,9 +1,7 @@
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
-import { writeFile, unlink, readdir } from "fs/promises";
-import { join } from "path";
+import { put, del, list } from "@vercel/blob";
 
-const GALLERY_DIR = join(process.cwd(), "public", "gallery");
 const ALLOWED = ["image/jpeg", "image/png", "image/webp"];
 const MAX_BYTES = 10 * 1024 * 1024;
 
@@ -15,10 +13,8 @@ async function checkAuth() {
 
 export async function GET() {
   if (!(await checkAuth())) return new Response("Unauthorized", { status: 401 });
-
-  const files = await readdir(GALLERY_DIR).catch(() => [] as string[]);
-  const images = files.filter((f) => /\.(jpg|jpeg|png|webp)$/i.test(f));
-  return Response.json({ images });
+  const { blobs } = await list({ prefix: "gallery/" });
+  return Response.json({ images: blobs.map((b) => b.url) });
 }
 
 export async function POST(req: NextRequest) {
@@ -32,21 +28,17 @@ export async function POST(req: NextRequest) {
   if (file.size > MAX_BYTES) return new Response("File too large", { status: 400 });
 
   const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
-  const filename = `${Date.now()}.${ext}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
-  await writeFile(join(GALLERY_DIR, filename), buffer);
+  const blob = await put(`gallery/${Date.now()}.${ext}`, file, { access: "public" });
 
-  return Response.json({ filename });
+  return Response.json({ url: blob.url });
 }
 
 export async function DELETE(req: NextRequest) {
   if (!(await checkAuth())) return new Response("Unauthorized", { status: 401 });
 
-  const { filename } = await req.json();
-  if (!filename || filename.includes("/") || filename.includes("..")) {
-    return new Response("Invalid filename", { status: 400 });
-  }
+  const { url } = await req.json();
+  if (!url || typeof url !== "string") return new Response("Invalid url", { status: 400 });
 
-  await unlink(join(GALLERY_DIR, filename)).catch(() => {});
+  await del(url);
   return Response.json({ ok: true });
 }

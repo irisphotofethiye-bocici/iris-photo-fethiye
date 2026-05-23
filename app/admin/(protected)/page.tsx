@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Trash2, Upload, ImageOff } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const basename = (url: string) => url.split("/").pop() ?? url;
+
 export default function GalleryAdmin() {
   const [images, setImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
@@ -32,11 +34,11 @@ export default function GalleryAdmin() {
     setUploading(false);
   };
 
-  const deleteImage = async (filename: string) => {
+  const deleteImage = async (url: string) => {
     await fetch("/api/admin/gallery", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ filename }),
+      body: JSON.stringify({ url }),
     });
     setConfirmDelete(null);
     await load();
@@ -103,9 +105,9 @@ export default function GalleryAdmin() {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           <AnimatePresence>
-            {images.map((img) => (
+            {images.map((url) => (
               <motion.div
-                key={img}
+                key={url}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -114,14 +116,14 @@ export default function GalleryAdmin() {
                 className="group relative aspect-square rounded-[14px] overflow-hidden bg-[var(--light)]"
               >
                 <Image
-                  src={`/gallery/${img}`}
-                  alt={img}
+                  src={url}
+                  alt={basename(url)}
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 50vw, 25vw"
                 />
                 <button
-                  onClick={() => setConfirmDelete(img)}
+                  onClick={() => setConfirmDelete(url)}
                   className="absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                   style={{ backgroundColor: "rgba(240,112,96,0.9)" }}
                   aria-label="Delete"
@@ -130,7 +132,7 @@ export default function GalleryAdmin() {
                 </button>
                 <div className="absolute bottom-0 left-0 right-0 px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <p className="font-body text-[10px] text-white truncate" style={{ backgroundColor: "rgba(0,0,0,0.5)", borderRadius: 4, padding: "2px 4px" }}>
-                    {img}
+                    {basename(url)}
                   </p>
                 </div>
               </motion.div>
@@ -159,7 +161,7 @@ export default function GalleryAdmin() {
             >
               <h3 className="font-display font-semibold" style={{ color: "var(--ink)" }}>Delete photo?</h3>
               <p className="font-body text-sm" style={{ color: "var(--mid)" }}>
-                {confirmDelete} — this cannot be undone.
+                {basename(confirmDelete)} — this cannot be undone.
               </p>
               <div className="flex gap-3 justify-end">
                 <button

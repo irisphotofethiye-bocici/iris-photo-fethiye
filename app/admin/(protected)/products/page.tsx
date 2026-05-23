@@ -14,6 +14,8 @@ const PRODUCTS = [
 
 type ProductId = (typeof PRODUCTS)[number]["id"];
 
+const basename = (url: string) => url.split("/").pop() ?? url;
+
 export default function ProductsAdmin() {
   const [activeTab, setActiveTab] = useState<ProductId>("print");
   const [photos, setPhotos] = useState<Record<ProductId, string[]>>({
@@ -48,11 +50,11 @@ export default function ProductsAdmin() {
     setUploading(false);
   };
 
-  const deletePhoto = async (filename: string) => {
+  const deletePhoto = async (url: string) => {
     await fetch("/api/admin/products", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ filename }),
+      body: JSON.stringify({ url }),
     });
     await load();
   };
@@ -122,21 +124,21 @@ export default function ProductsAdmin() {
             }
             className="flex gap-4 flex-wrap"
           >
-            {currentPhotos.map((filename) => (
+            {currentPhotos.map((url) => (
               <Reorder.Item
-                key={filename}
-                value={filename}
+                key={url}
+                value={url}
                 className="relative w-36 h-36 rounded-[14px] overflow-hidden bg-[var(--light)] cursor-grab active:cursor-grabbing group flex-shrink-0"
               >
                 <Image
-                  src={`/products/${filename}`}
-                  alt={filename}
+                  src={url}
+                  alt={basename(url)}
                   fill
                   className="object-cover pointer-events-none"
                   sizes="144px"
                 />
                 <button
-                  onClick={() => deletePhoto(filename)}
+                  onClick={() => deletePhoto(url)}
                   className="absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                   style={{ backgroundColor: "rgba(240,112,96,0.9)" }}
                   aria-label="Delete"
@@ -147,7 +149,7 @@ export default function ProductsAdmin() {
                   className="absolute bottom-0 left-0 right-0 px-2 py-1 text-center opacity-0 group-hover:opacity-100 transition-opacity"
                   style={{ backgroundColor: "rgba(0,0,0,0.45)" }}
                 >
-                  <p className="font-body text-[9px] text-white truncate">{filename}</p>
+                  <p className="font-body text-[9px] text-white truncate">{basename(url)}</p>
                 </div>
               </Reorder.Item>
             ))}

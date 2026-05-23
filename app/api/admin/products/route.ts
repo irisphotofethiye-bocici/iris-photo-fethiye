@@ -1,9 +1,7 @@
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
-import { writeFile, unlink, readdir } from "fs/promises";
-import { join } from "path";
+import { put, del, list } from "@vercel/blob";
 
-const PRODUCTS_DIR = join(process.cwd(), "public", "products");
 const ALLOWED = ["image/jpeg", "image/png", "image/webp"];
 const MAX_BYTES = 10 * 1024 * 1024;
 const PRODUCT_IDS = ["print", "necklace", "bracelet", "keychain"] as const;
@@ -18,12 +16,13 @@ async function checkAuth() {
 export async function GET() {
   if (!(await checkAuth())) return new Response("Unauthorized", { status: 401 });
 
-  const all = await readdir(PRODUCTS_DIR).catch(() => [] as string[]);
+  const { blobs } = await list({ prefix: "products/" });
   const byProduct: Record<string, string[]> = {};
 
   for (const id of PRODUCT_IDS) {
-    byProduct[id] = all
-      .filter((f) => f.startsWith(`${id}-`) && /\.(jpg|jpeg|png|webp)$/i.test(f))
+    byProduct[id] = blobs
+      .filter((b) => b.pathname.startsWith(`products/${id}-`))
+      .map((b) => b.url)
       .sort();
   }
 
@@ -45,21 +44,21 @@ export async function POST(req: NextRequest) {
 
   const slotNum = String(slot).padStart(2, "0");
   const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
-  const filename = `${product}-${slotNum}.${ext}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
-  await writeFile(join(PRODUCTS_DIR, filename), buffer);
+  const blob = await put(`products/${product}-${slotNum}.${ext}`, file, {
+    access: "public",
+    addRandomSuffix: false,
+    allowOverwrite: true,
+  });
 
-  return Response.json({ filename });
+  return Response.json({ url: blob.url });
 }
 
 export async function DELETE(req: NextRequest) {
   if (!(await checkAuth())) return new Response("Unauthorized", { status: 401 });
 
-  const { filename } = await req.json();
-  if (!filename || filename.includes("/") || filename.includes("..")) {
-    return new Response("Invalid filename", { status: 400 });
-  }
+  const { url } = await req.json();
+  if (!url || typeof url !== "string") return new Response("Invalid url", { status: 400 });
 
-  await unlink(join(PRODUCTS_DIR, filename)).catch(() => {});
+  await del(url);
   return Response.json({ ok: true });
 }

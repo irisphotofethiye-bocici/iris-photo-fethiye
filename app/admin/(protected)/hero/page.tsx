@@ -4,6 +4,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { Upload, ImageOff } from "lucide-react";
 
+const basename = (url: string) => url.split("/").pop() ?? url;
+
 export default function HeroAdmin() {
   const [hero, setHero] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -13,7 +15,7 @@ export default function HeroAdmin() {
   const load = useCallback(async () => {
     const res = await fetch("/api/admin/hero");
     const data = await res.json();
-    setHero(data.hero ?? null);
+    setHero(data.url ?? null);
   }, []);
 
   useEffect(() => { load(); }, [load]);
@@ -49,14 +51,14 @@ export default function HeroAdmin() {
           <p className="font-body text-sm font-medium" style={{ color: "var(--mid)" }}>Current hero</p>
           <div className="relative w-full aspect-video rounded-[10px] overflow-hidden bg-[var(--light)]">
             <Image
-              src={`/hero/${hero}`}
+              src={hero}
               alt="Current hero"
               fill
               className="object-cover"
               sizes="100vw"
             />
           </div>
-          <p className="font-body text-xs" style={{ color: "var(--muted)" }}>{hero}</p>
+          <p className="font-body text-xs" style={{ color: "var(--muted)" }}>{basename(hero)}</p>
         </div>
       ) : (
         <div className="flex flex-col items-center gap-3 py-12">
