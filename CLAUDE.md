@@ -44,7 +44,9 @@ Use `next/image` with `fill` + `sizes` for all images. `PlaceholderImage` (`app/
 
 Routes under `app/admin/` and `app/api/admin/`. Auth uses an HttpOnly cookie `admin-session` set by `/api/admin/login`. Password checked against `process.env.ADMIN_PASSWORD` (`.env.local`, not committed).
 
-**Critical**: Admin API routes (`gallery`, `hero`, `products`) use `fs.writeFile`/`readdir` on `public/` — this only works in local/VPS environments, not on Vercel serverless. The decision was made to deploy on Vercel without using the admin upload feature; images are managed statically.
+Image upload routes (`gallery`, `hero`, `products`) use `@vercel/blob` (`put`/`del`/`list`) — requires `BLOB_READ_WRITE_TOKEN` env var on Vercel. Remote pattern `*.public.blob.vercel-storage.com` is allowed in `next.config.ts` for `next/image`.
+
+**Critical**: The `weekly` route still uses `fs.writeFile` on the local filesystem (`data/weekly-content.json`, `public/weekly/`). This only works in local/VPS environments, not on Vercel serverless.
 
 ### WeeklyContent
 
@@ -52,4 +54,4 @@ Routes under `app/admin/` and `app/api/admin/`. Auth uses an HttpOnly cookie `ad
 
 ## Deployment
 
-Target: Vercel. Required env var: `ADMIN_PASSWORD`. Domain: `irisphotofethiye.com` (Cloudflare DNS).
+Target: Vercel. Required env vars: `ADMIN_PASSWORD`, `BLOB_READ_WRITE_TOKEN`. Domain: `irisphotofethiye.com` (Cloudflare DNS).

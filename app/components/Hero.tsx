@@ -47,7 +47,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full min-h-[90vh] flex items-center overflow-hidden"
+      className="relative w-full min-h-[100svh] md:min-h-[90vh] flex items-center overflow-hidden"
       style={{ backgroundColor: "var(--off-white)" }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -83,7 +83,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 max-w-6xl mx-auto px-4 py-20 w-full">
+      <div className="relative z-20 max-w-6xl mx-auto px-4 py-12 md:py-20 w-full">
         <div className="max-w-xl">
           <motion.div
             initial={{ opacity: 0 }}
@@ -138,7 +138,7 @@ export default function Hero() {
       </div>
 
       {/* Line indicators */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+      <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
         {IMAGES.map((_, i) => (
           <button
             key={i}
@@ -159,7 +159,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1"
+        className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1"
       >
         <span className="text-white/50 text-xs font-body tracking-widest uppercase">Scroll</span>
         <motion.div
