@@ -10,10 +10,10 @@ const productKeys = ["print", "necklace", "bracelet", "keychain"] as const;
 type ProductKey = typeof productKeys[number];
 
 const productPhotos: Record<ProductKey, string[]> = {
-  print:    ["/products/print-01.jpg",    "/products/print-02.jpg",    "/products/print-03.jpg",    "/products/print-04.jpg",    "/products/print-05.jpg"],
-  necklace: ["/products/necklace-01.jpg", "/products/necklace-02.jpg", "/products/necklace-03.jpg", "/products/necklace-04.jpg", "/products/necklace-05.jpg"],
+  print:    ["/products/print-01.jpeg", "/products/print-02.jpeg", "/products/print-03.jpeg"],
+  necklace: ["/products/necklace-01.png", "/products/necklace-02.png", "/products/necklace-03.jpeg", "/products/necklace-04.jpeg", "/products/necklace-05.jpeg"],
   bracelet: ["/products/bracelet-01.jpg", "/products/bracelet-02.jpg", "/products/bracelet-03.jpg", "/products/bracelet-04.jpg", "/products/bracelet-05.jpg"],
-  keychain: ["/products/keychain-01.jpg", "/products/keychain-02.jpg", "/products/keychain-03.jpg", "/products/keychain-04.jpg", "/products/keychain-05.jpg"],
+  keychain: ["/products/keychain-01.jpeg", "/products/keychain-02.jpeg"],
 };
 
 type LightboxState = { key: ProductKey; photoIndex: number } | null;
@@ -97,7 +97,7 @@ function Lightbox({
                 src={photos[idx]}
                 alt={`${t(`products.${key}.title`)} photo ${idx + 1}`}
                 fill
-                className="object-cover"
+                className="object-contain p-4"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               {photos.length > 1 && (
@@ -143,8 +143,8 @@ function Lightbox({
               >
                 {t(`products.${key}.subtitle`)}
               </span>
-              <p data-i18n={`products.${key}.desc`} className="font-body text-sm leading-relaxed" style={{ color: "var(--mid)", fontWeight: 300 }}>
-                {t(`products.${key}.desc`)}
+              <p className="font-body text-sm leading-relaxed" style={{ color: "var(--mid)", fontWeight: 300 }}>
+                {(() => { const k = `products.${key}.desc.${idx}`; const v = t(k); return v !== k ? v : t(`products.${key}.desc`); })()}
               </p>
               <a
                 href="https://wa.me/905427469297"
@@ -207,7 +207,7 @@ export default function Products() {
                     src={productPhotos[key][0]}
                     alt={`${t(`products.${key}.title`)} — Iris Photo Fethiye`}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-contain p-4 transition-transform duration-300"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                 </div>

@@ -45,6 +45,9 @@ export default function FindUs() {
           <p data-i18n="findus.subtitle" className="font-body" style={{ color: "rgba(255,255,255,0.6)", fontWeight: 300 }}>
             {t("findus.subtitle")}
           </p>
+          <p data-i18n="findus.souvenir" className="font-body mt-2" style={{ color: "var(--teal-l)", fontWeight: 300, fontSize: "0.95rem" }}>
+            {t("findus.souvenir")}
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">

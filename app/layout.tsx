@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description:
     "The most unique thing to do in Ölüdeniz. Free iris photography at Art Street — fine art print, necklace or bracelet. Walk in, no appointment.",
   keywords:
-    "things to do Ölüdeniz, unique souvenir Fethiye, iris photography Fethiye, personalised gift Turkey, after paragliding Ölüdeniz",
+    "things to do Ölüdeniz, unique souvenir Fethiye, best souvenir Fethiye, unique souvenir Ölüdeniz, iris photography Fethiye, personalised gift Turkey, personalised souvenir Turkey, souvenir shop Ölüdeniz Art Street, unique gift Fethiye, handmade souvenir Turkey, after paragliding Ölüdeniz",
   metadataBase: new URL("https://www.irisphotofethiye.com"),
   alternates: {
     canonical: "/",

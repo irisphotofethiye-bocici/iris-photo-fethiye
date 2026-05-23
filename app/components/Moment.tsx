@@ -1,33 +1,95 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
-import PlaceholderImage from "./PlaceholderImage";
+import Image from "next/image";
 import { useLang } from "@/app/context/LangContext";
+
+const IMAGES = [
+  { src: "/about/moment-01.jpg", alt: "Family with iris fine art print, Ölüdeniz Art Street" },
+  { src: "/about/moment-02.jpg", alt: "Iris fine art print souvenir, Fethiye" },
+  { src: "/about/moment-03.jpg", alt: "Iris jewelry keepsake, Ölüdeniz" },
+  { src: "/about/moment-04.jpg", alt: "Iris photo session moment, Fethiye" },
+];
+
+const INTERVAL = 4000;
 
 export default function Moment() {
   const { t } = useLang();
+  const [current, setCurrent] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const advance = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % IMAGES.length);
+  }, []);
+
+  useEffect(() => {
+    if (IMAGES.length <= 1) return;
+    timerRef.current = setInterval(advance, INTERVAL);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [advance]);
+
+  const handleClick = () => {
+    if (IMAGES.length <= 1) return;
+    if (timerRef.current) clearInterval(timerRef.current);
+    advance();
+    timerRef.current = setInterval(advance, INTERVAL);
+  };
 
   return (
     <section className="w-full py-20" style={{ backgroundColor: "var(--white)" }}>
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Image */}
+          {/* Slideshow */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="relative w-full aspect-[4/5] rounded-[14px] overflow-hidden"
-            style={{ boxShadow: "0 4px 20px rgba(26,42,38,0.08)" }}
+            style={{
+              boxShadow: "0 4px 20px rgba(26,42,38,0.08)",
+              cursor: IMAGES.length > 1 ? "pointer" : "default",
+            }}
+            onClick={handleClick}
           >
-            <PlaceholderImage
-              src="/gallery/family.jpg"
-              alt="Family with iris fine art print, Ölüdeniz Art Street"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={current}
+                className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+              >
+                <Image
+                  src={IMAGES[current].src}
+                  alt={IMAGES[current].alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Dot indicators */}
+            {IMAGES.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                {IMAGES.map((_, i) => (
+                  <div
+                    key={i}
+                    className="transition-all duration-300"
+                    style={{
+                      width: "20px",
+                      height: "2px",
+                      borderRadius: "1px",
+                      backgroundColor: i === current ? "white" : "rgba(255,255,255,0.4)",
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </motion.div>
 
           {/* Text */}

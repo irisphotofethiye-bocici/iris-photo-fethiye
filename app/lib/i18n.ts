@@ -19,6 +19,10 @@ const strings: Record<string, Record<Lang, string>> = {
     en: "Free iris photography session at our Art Street studio. Choose a fine art print, necklace, bracelet or keychain — a truly unique Fethiye souvenir. Walk in, no appointment needed.",
     tr: "Art Sokak stüdyomuzda ücretsiz iris fotoğraf çekimi. Sanat baskısı, kolye, bileklik veya anahtarlık seçin — gerçekten eşsiz bir Fethiye hatırası. Randevu gerekmez, kapıdan girin.",
   },
+  "hero.subtext":       {
+    en: "The most personal souvenir you'll find in Fethiye.",
+    tr: "Fethiye'de bulabileceğiniz en kişisel hediye.",
+  },
   "hero.cta.whatsapp": { en: "Book via WhatsApp",  tr: "WhatsApp'tan Rezerve Et" },
   "hero.cta.how":      { en: "How it works",        tr: "Nasıl çalışır" },
 
@@ -33,7 +37,7 @@ const strings: Record<string, Record<Lang, string>> = {
     en: "We photograph your iris with our macro lens — completely free. No appointment, no waiting. Just walk into our Art Street studio.",
     tr: "İrisinizi makro lensimizle fotoğraflıyoruz — tamamen ücretsiz. Randevu yok, bekleme yok. Art Sokak stüdyomuza kapıdan girin.",
   },
-  "features.c2.title": { en: "Fine Art Prints",         tr: "Sanat Baskıları" },
+  "features.c2.title": { en: "Unforgettable Souvenir",   tr: "Unutulmaz Hediye" },
   "features.c2.body":  {
     en: "Your iris on museum-quality fine art paper. Sizes from 13×18 cm up to 50×70 cm, with black or white frame options.",
     tr: "İrisiniz müze kalitesinde sanat kağıdına baskılı. 13×18 cm'den 50×70 cm'e kadar boyutlar, siyah veya beyaz çerçeve seçenekleriyle.",
@@ -88,23 +92,59 @@ const strings: Record<string, Record<Lang, string>> = {
     en: "Printed on museum-quality fine art paper. Available in 9 sizes from 13×18 cm to 50×70 cm. Black or white frame included.",
     tr: "Müze kalitesinde sanat kağıdına baskılı. 13×18 cm'den 50×70 cm'e kadar 9 farklı boyut. Siyah veya beyaz çerçeve dahil.",
   },
-  "products.necklace.title":    { en: "Iris Necklace",          tr: "İris Kolye" },
-  "products.necklace.subtitle": { en: "Silver or gold plated",  tr: "Gümüş veya altın kaplama" },
+  "products.necklace.title":    { en: "Iris Necklace",                   tr: "İris Kolye" },
+  "products.necklace.subtitle": { en: "Stainless steel · 50 cm chain",   tr: "Paslanmaz çelik · 50 cm zincir" },
   "products.necklace.desc":     {
-    en: "Single or double pendant in silver or gold-plated finish. Chain length: 42, 45 or 50 cm. Your iris, worn every day.",
-    tr: "Gümüş veya altın kaplama tek ya da çift kolye ucu. Zincir uzunluğu: 42, 45 veya 50 cm. İrisiniz, her gün üstünüzde.",
+    en: "Stainless steel with a gold-plated finish. Iris size available in 1.2, 1.6, 2 or 2.5 cm. Chain length: 50 cm.",
+    tr: "Paslanmaz çelik üzerine altın kaplama. İris boyutu 1,2 / 1,6 / 2 / 2,5 cm seçeneklerinde mevcut. Zincir boyu 50 cm.",
+  },
+  "products.necklace.desc.1":   {
+    en: "Stainless steel with two irises in a single pendant, 2.5 cm. A unique piece for two people — or two eyes. Chain length: 50 cm.",
+    tr: "Paslanmaz çelik, tek üründe iki iris, 2,5 cm. İki kişi ya da iki göz için eşsiz bir parça. Zincir boyu 50 cm.",
+  },
+  "products.necklace.desc.2":   {
+    en: "Stainless steel snake chain necklace. Iris size available in 1.2, 1.6, 2 or 2.5 cm. Chain length: 50 cm.",
+    tr: "Paslanmaz çelik yılan zincirli kolye. İris boyutu 1,2 / 1,6 / 2 / 2,5 cm seçeneklerinde mevcut. Zincir boyu 50 cm.",
+  },
+  "products.necklace.desc.3":   {
+    en: "Stainless steel double iris pendant, 1.2 cm — compact and elegant. Chain length: 50 cm.",
+    tr: "Paslanmaz çelik çift iris kolye ucu, 1,2 cm — küçük ve zarif. Zincir boyu 50 cm.",
+  },
+  "products.necklace.desc.4":   {
+    en: "Stainless steel setting with a leather cord. Iris size available in 1.2, 1.6, 2 or 2.5 cm. Cord length: 50 cm.",
+    tr: "Paslanmaz çelik gövde, deri kordon. İris boyutu 1,2 / 1,6 / 2 / 2,5 cm seçeneklerinde mevcut. Kordon boyu 50 cm.",
   },
   "products.bracelet.title":    { en: "Iris Bracelet",            tr: "İris Bileklik" },
   "products.bracelet.subtitle": { en: "Handmade in Fethiye",      tr: "Fethiye'de el yapımı" },
   "products.bracelet.desc":     {
-    en: "Navy cord with gold bezel, gold box chain with double bezel, or silver box chain with adjustable single bezel.",
-    tr: "Altın çerçeveli lacivert kordon, çift çerçeveli altın zincir veya ayarlanabilir tek çerçeveli gümüş zincir.",
+    en: "Made from stainless steel with a gold-plated finish that won't fade or tarnish. The iris comes in 1.2, 1.6 or 2 cm sizes — pick the one that feels right for your wrist. Fully adjustable, so it fits everyone.",
+    tr: "Paslanmaz çelik üzerine altın kaplama — solmaz, kararmaz. İris camı 1,2 / 1,6 / 2 cm boyutlarında mevcut, bileğinize en yakışanı seçin. Ayarlanabilir yapısı sayesinde her bileğe uyuyor.",
   },
-  "products.keychain.title":    { en: "Iris Keychain",           tr: "İris Anahtarlık" },
-  "products.keychain.subtitle": { en: "Gold plated · Glass dome", tr: "Altın kaplama · Cam kubbe" },
+  "products.bracelet.desc.1":   {
+    en: "Handwoven macramé cord with a stainless steel body — natural texture, solid build. Available in 1.2, 1.6 or 2 cm iris sizes. The cord is adjustable, so it sits exactly where you want it.",
+    tr: "El örgüsü makrome kordon, paslanmaz çelik gövdeyle buluşuyor — doğal doku, sağlam yapı. İris boyutu: 1,2 / 1,6 / 2 cm. Kordon ayarlanabilir, tam istediğiniz yerde durur.",
+  },
+  "products.bracelet.desc.2":   {
+    en: "A playful mix of colorful cords with a silver or gold-plated stainless steel setting. Three iris sizes: 1.2, 1.6 or 2 cm. Adjustable cord — pick the color combo that matches your vibe.",
+    tr: "Renkli iplik örgüsü, gümüş ya da altın kaplama paslanmaz çelik çerçeveyle. İris boyutu: 1,2 / 1,6 / 2 cm. Ayarlanabilir kordon — tarzınıza uyan rengi seçin.",
+  },
+  "products.bracelet.desc.3":   {
+    en: "Simple stainless steel with a clean adjustable cord — understated, everyday, built to last. Available in 1.2, 1.6 or 2 cm iris sizes.",
+    tr: "Sade paslanmaz çelik, temiz ayarlanabilir kordonlu — gösterişsiz, günlük, dayanıklı. İris boyutu: 1,2 / 1,6 / 2 cm.",
+  },
+  "products.bracelet.desc.4":   {
+    en: "Stainless steel with an adjustable cord that fits any wrist. Iris size options: 1.2, 1.6 or 2 cm — pick what suits you best.",
+    tr: "Paslanmaz çelik, her bileğe uyan ayarlı kordonlu. İris boyutu seçenekleri: 1,2 / 1,6 / 2 cm — size en uygun olanı seçin.",
+  },
+  "products.keychain.title":    { en: "Iris Keychain",              tr: "İris Anahtarlık" },
+  "products.keychain.subtitle": { en: "Stainless steel · Gold plated option", tr: "Paslanmaz çelik · Altın kaplama seçeneği" },
   "products.keychain.desc":     {
-    en: "Gold-plated keychain with a glass dome cabochon holding your iris photograph. A small everyday reminder.",
-    tr: "İris fotoğrafınızı tutan cam kubbeli, altın kaplama anahtarlık. Küçük ama günlük bir hatırlatıcı.",
+    en: "Stainless steel with a gold-plated finish. Available as a single iris or double iris (two-sided). A small everyday reminder of your Fethiye visit.",
+    tr: "Paslanmaz çelik üzerine altın kaplama. Tek iris veya çift iris (arkalı önlü) seçeneğiyle mevcut. Fethiye ziyaretinizin küçük günlük hatırlatıcısı.",
+  },
+  "products.keychain.desc.1":   {
+    en: "Stainless steel keychain, 2.5 cm iris. Available as a single iris or double iris (front and back). A solid, everyday carry.",
+    tr: "Paslanmaz çelik anahtarlık, 2,5 cm iris. Tek iris veya arkalı önlü çift iris seçeneğiyle mevcut. Sağlam, günlük kullanım için ideal.",
   },
 
   // Gallery
@@ -119,6 +159,10 @@ const strings: Record<string, Record<Lang, string>> = {
   // FindUs
   "findus.title":    { en: "Find us",                               tr: "Bizi Bulun" },
   "findus.subtitle": { en: "No appointment needed — just walk in.", tr: "Randevu gerekmez — doğrudan gelin." },
+  "findus.souvenir": {
+    en: "The most personal souvenir on Ölüdeniz Art Street.",
+    tr: "Ölüdeniz Art Sokak'taki en kişisel hediye.",
+  },
   "findus.hours":    { en: "Every day 15:00 – 24:00",               tr: "Her gün 15:00 – 24:00" },
   "findus.weather":  { en: "Weather permitting",                    tr: "Hava durumuna göre" },
   "findus.maps":     { en: "Open in Google Maps →",                 tr: "Google Maps'te Aç →" },

@@ -37,24 +37,24 @@ export default function Nav() {
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5 leading-tight">
           <Image
-            src="/logo/logo.jpg"
+            src="/logo/logo-transparent.png"
             alt="Iris Photo Fethiye"
-            width={68}
-            height={68}
-            className="rounded-full"
+            width={44}
+            height={44}
+            style={{ objectFit: "contain", flexShrink: 0 }}
           />
           <div className="flex flex-col leading-tight">
             <span
               className="font-body font-bold tracking-[0.2em] uppercase"
-              style={{ fontSize: "1rem", color: "var(--mid)" }}
+              style={{ fontSize: "0.85rem", color: "var(--mid)" }}
             >
               Iris Photo
             </span>
             <span
               className="font-display italic"
-              style={{ fontSize: "1.45rem", color: "var(--mid)", lineHeight: 1.1 }}
+              style={{ fontSize: "1.25rem", color: "var(--mid)", lineHeight: 1.1 }}
             >
-              Fethiye
+              Fethiye · Ölüdeniz
             </span>
           </div>
         </a>

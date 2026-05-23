@@ -1,35 +1,94 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { MessageCircle, MapPin } from "lucide-react";
-import PlaceholderImage from "./PlaceholderImage";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MapPin } from "lucide-react";
+import Image from "next/image";
 import { useLang } from "@/app/context/LangContext";
+
+const IMAGES = [
+  "/hero/hero-01.jpeg",
+  "/hero/hero-02.jpeg",
+  "/hero/hero-03.jpeg",
+  "/hero/hero-04.jpeg",
+  "/hero/hero-05.jpeg",
+];
+
+const INTERVAL = 5000;
+const FADE_DURATION = 0.8;
 
 export default function Hero() {
   const { t } = useLang();
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartX = useRef<number | null>(null);
+
+  const advance = useCallback((dir: 1 | -1) => {
+    setCurrent((prev) => (prev + dir + IMAGES.length) % IMAGES.length);
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    timerRef.current = setInterval(() => advance(1), INTERVAL);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [paused, advance]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 40) advance(delta < 0 ? 1 : -1);
+    touchStartX.current = null;
+  };
 
   return (
-    <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden" style={{ backgroundColor: "var(--off-white)" }}>
-      {/* Background image */}
+    <section
+      className="relative w-full min-h-[90vh] flex items-center overflow-hidden"
+      style={{ backgroundColor: "var(--off-white)" }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Slider images */}
       <div className="absolute inset-0">
-        <PlaceholderImage
-          src="/hero/hero-01.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={current}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: FADE_DURATION, ease: "easeInOut" }}
+          >
+            <Image
+              src={IMAGES[current]}
+              alt=""
+              fill
+              priority={current === 0}
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+          </motion.div>
+        </AnimatePresence>
+        {/* Bottom-left gradient only */}
+        <div
+          className="absolute inset-0 z-10"
+          style={{ background: "linear-gradient(to right, rgba(0,0,0,0.45) 0%, transparent 60%)" }}
         />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(26,42,38,0.75) 0%, rgba(26,42,38,0.3) 60%, transparent 100%)" }} />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 w-full">
+      <div className="relative z-20 max-w-6xl mx-auto px-4 py-20 w-full">
         <div className="max-w-xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
             className="flex items-center gap-2 mb-5"
           >
             <MapPin size={14} className="text-[var(--teal-l)]" />
@@ -39,45 +98,34 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.1, ease: "easeOut" }}
-            className="font-display text-white mb-5 leading-tight"
+            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            className="font-display text-white mb-8 leading-tight"
             style={{ fontSize: "clamp(2.2rem, 5vw, 3.8rem)", fontWeight: 600 }}
           >
-            <span data-i18n="hero.heading">{t("hero.heading")}</span>{" "}
-            <em className="italic" style={{ color: "var(--teal-l)" }}>
+            <span data-i18n="hero.heading" style={{ color: "var(--teal-l)" }}>{t("hero.heading")}</span>{" "}
+            <em className="italic" style={{ color: "white" }}>
               <span data-i18n="hero.headingEm">{t("hero.headingEm")}</span>
             </em>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.2, ease: "easeOut" }}
-            data-i18n="hero.body"
-            className="font-body text-white/85 mb-8 leading-relaxed"
-            style={{ fontSize: "clamp(1rem, 2vw, 1.15rem)", fontWeight: 300 }}
+            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+            data-i18n="hero.subtext"
+            className="font-body mb-8 leading-relaxed"
+            style={{ color: "rgba(255,255,255,0.75)", fontWeight: 300, fontSize: "1.05rem" }}
           >
-            {t("hero.body")}
+            {t("hero.subtext")}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-wrap gap-3"
+            transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
           >
-            <a
-              href="https://wa.me/905427469297"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-body font-medium text-white px-7 py-3.5 transition-opacity hover:opacity-90"
-              style={{ backgroundColor: "var(--teal)", borderRadius: "24px" }}
-            >
-              <MessageCircle size={17} strokeWidth={2} />
-              <span data-i18n="hero.cta.whatsapp">{t("hero.cta.whatsapp")}</span>
-            </a>
             <a
               href="#process"
               className="inline-flex items-center gap-2 font-body font-medium px-7 py-3.5 border transition-colors hover:bg-white/10"
@@ -89,12 +137,29 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Line indicators */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+        {IMAGES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Slide ${i + 1}`}
+            className="transition-all duration-300"
+            style={{
+              width: "24px",
+              height: "2px",
+              backgroundColor: i === current ? "white" : "rgba(255,255,255,0.4)",
+            }}
+          />
+        ))}
+      </div>
+
       {/* Scroll hint */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1"
       >
         <span className="text-white/50 text-xs font-body tracking-widest uppercase">Scroll</span>
         <motion.div

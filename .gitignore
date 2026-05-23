@@ -36,6 +36,15 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local dev / claude
+.claude/
+.playwright-mcp/
+test-*.png
+
+# root-level playwright screenshots
+/*.png
+/*.jpeg
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

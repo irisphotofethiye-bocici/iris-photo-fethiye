@@ -5,14 +5,18 @@ import PlaceholderImage from "./PlaceholderImage";
 import { useLang } from "@/app/context/LangContext";
 
 const photos = [
-  { src: "/gallery/iris-01.jpg", alt: "Human iris macro photography blue eye" },
-  { src: "/gallery/iris-02.jpg", alt: "Human iris macro photography green eye" },
-  { src: "/gallery/iris-03.jpg", alt: "Human iris macro photography brown eye" },
-  { src: "/gallery/iris-04.jpg", alt: "Human iris macro photography hazel eye" },
-  { src: "/gallery/iris-05.jpg", alt: "Human iris macro photography grey eye" },
-  { src: "/gallery/iris-06.jpg", alt: "Human iris macro photography dark brown eye" },
-  { src: "/gallery/iris-07.jpg", alt: "Human iris macro photography amber eye" },
-  { src: "/gallery/iris-08.jpg", alt: "Human iris macro photography mixed color eye" },
+  { src: "/gallery/iris-01.jpeg", alt: "Iris Photo Fethiye — iris jewelry necklace" },
+  { src: "/gallery/iris-02.jpeg", alt: "Iris Photo Fethiye — portrait" },
+  { src: "/gallery/iris-03.jpeg", alt: "Iris Photo Fethiye — iris jewelry bracelet" },
+  { src: "/gallery/iris-04.jpeg", alt: "Iris Photo Fethiye — woman portrait" },
+  { src: "/gallery/iris-05.jpeg", alt: "Iris Photo Fethiye — human iris macro" },
+  { src: "/gallery/iris-06.jpeg", alt: "Iris Photo Fethiye — luxury fashion" },
+  { src: "/gallery/iris-07.jpeg", alt: "Iris Photo Fethiye — ultra close-up iris" },
+  { src: "/gallery/iris-08.jpeg", alt: "Iris Photo Fethiye — iris art" },
+  { src: "/gallery/iris-09.jpeg", alt: "Iris Photo Fethiye — iris photography" },
+  { src: "/gallery/iris-10.jpeg", alt: "Iris Photo Fethiye — fine art print" },
+  { src: "/gallery/iris-11.jpeg", alt: "Iris Photo Fethiye — iris bracelet" },
+  { src: "/gallery/iris-12.jpeg", alt: "Iris Photo Fethiye — iris bracelet detail" },
 ];
 
 export default function Gallery() {
