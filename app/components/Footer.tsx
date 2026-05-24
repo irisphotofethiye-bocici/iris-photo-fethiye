@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <Image
-            src="/logo/logo-transparent.png"
+            src="/logo/logo-transparent.webp"
             alt="Iris Photo Fethiye"
             width={60}
             height={60}

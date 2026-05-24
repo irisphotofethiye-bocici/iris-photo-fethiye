@@ -7,10 +7,10 @@ import Image from "next/image";
 import { useLang } from "@/app/context/LangContext";
 
 const IMAGES = [
-  { src: "/about/moment-01.jpg", alt: "Family with iris fine art print, Ölüdeniz Art Street" },
-  { src: "/about/moment-02.jpg", alt: "Iris fine art print souvenir, Fethiye" },
-  { src: "/about/moment-03.jpg", alt: "Iris jewelry keepsake, Ölüdeniz" },
-  { src: "/about/moment-04.jpg", alt: "Iris photo session moment, Fethiye" },
+  { src: "/about/moment-01.webp", alt: "Family with iris fine art print, Ölüdeniz Art Street" },
+  { src: "/about/moment-02.webp", alt: "Iris fine art print souvenir, Fethiye" },
+  { src: "/about/moment-03.webp", alt: "Iris jewelry keepsake, Ölüdeniz" },
+  { src: "/about/moment-04.webp", alt: "Iris photo session moment, Fethiye" },
 ];
 
 const INTERVAL = 4000;

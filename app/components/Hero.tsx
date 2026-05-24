@@ -7,17 +7,17 @@ import Image from "next/image";
 import { useLang } from "@/app/context/LangContext";
 
 const IMAGES_DESKTOP = [
-  "/hero/hero-01.jpeg",
-  "/hero/hero-02.jpeg",
-  "/hero/hero-03.jpeg",
-  "/hero/hero-04.jpeg",
+  "/hero/hero-01.webp",
+  "/hero/hero-02.webp",
+  "/hero/hero-03.webp",
+  "/hero/hero-04.webp",
 ];
 
 const IMAGES_MOBILE = [
-  "/hero/hero-01-mobile.jpeg",
-  "/hero/hero-02-mobile.jpeg",
-  "/hero/hero-03-mobile.jpeg",
-  "/hero/hero-04-mobile.jpeg",
+  "/hero/hero-01-mobile.webp",
+  "/hero/hero-02-mobile.webp",
+  "/hero/hero-03-mobile.webp",
+  "/hero/hero-04-mobile.webp",
 ];
 
 const INTERVAL = 5000;

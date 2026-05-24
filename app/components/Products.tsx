@@ -10,10 +10,10 @@ const productKeys = ["print", "necklace", "bracelet", "keychain"] as const;
 type ProductKey = typeof productKeys[number];
 
 const productPhotos: Record<ProductKey, string[]> = {
-  print:    ["/products/print-01.jpeg", "/products/print-02.jpeg", "/products/print-03.jpeg"],
-  necklace: ["/products/necklace-01.png", "/products/necklace-02.png", "/products/necklace-03.jpeg", "/products/necklace-04.jpeg", "/products/necklace-05.jpeg"],
-  bracelet: ["/products/bracelet-01.jpg", "/products/bracelet-02.jpg", "/products/bracelet-03.jpg", "/products/bracelet-04.jpg", "/products/bracelet-05.jpg"],
-  keychain: ["/products/keychain-01.jpeg", "/products/keychain-02.jpeg"],
+  print:    ["/products/print-01.webp", "/products/print-02.webp", "/products/print-03.webp"],
+  necklace: ["/products/necklace-01.webp", "/products/necklace-02.webp", "/products/necklace-03.webp", "/products/necklace-04.webp", "/products/necklace-05.webp"],
+  bracelet: ["/products/bracelet-01.webp", "/products/bracelet-02.webp", "/products/bracelet-03.webp", "/products/bracelet-04.webp", "/products/bracelet-05.webp"],
+  keychain: ["/products/keychain-01.webp", "/products/keychain-02.webp"],
 };
 
 type LightboxState = { key: ProductKey; photoIndex: number } | null;

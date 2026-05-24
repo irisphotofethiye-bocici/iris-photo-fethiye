@@ -37,7 +37,7 @@ export default function Nav() {
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5 leading-tight">
           <Image
-            src="/logo/logo-transparent.png"
+            src="/logo/logo-transparent.webp"
             alt="Iris Photo Fethiye"
             width={44}
             height={44}
