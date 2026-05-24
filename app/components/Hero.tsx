@@ -6,12 +6,20 @@ import { MapPin } from "lucide-react";
 import Image from "next/image";
 import { useLang } from "@/app/context/LangContext";
 
-const IMAGES = [
+const IMAGES_DESKTOP = [
   "/hero/hero-01.jpeg",
   "/hero/hero-02.jpeg",
   "/hero/hero-03.jpeg",
   "/hero/hero-04.jpeg",
   "/hero/hero-05.jpeg",
+];
+
+const IMAGES_MOBILE = [
+  "/hero/hero-01-mobile.jpeg",
+  "/hero/hero-02-mobile.jpeg",
+  "/hero/hero-03-mobile.jpeg",
+  "/hero/hero-04-mobile.jpeg",
+  "/hero/hero-05-mobile.jpeg",
 ];
 
 const INTERVAL = 5000;
@@ -25,7 +33,7 @@ export default function Hero() {
   const touchStartX = useRef<number | null>(null);
 
   const advance = useCallback((dir: 1 | -1) => {
-    setCurrent((prev) => (prev + dir + IMAGES.length) % IMAGES.length);
+    setCurrent((prev) => (prev + dir + IMAGES_DESKTOP.length) % IMAGES_DESKTOP.length);
   }, []);
 
   useEffect(() => {
@@ -65,12 +73,22 @@ export default function Hero() {
             exit={{ opacity: 0 }}
             transition={{ duration: FADE_DURATION, ease: "easeInOut" }}
           >
+            {/* Masaüstü: landscape görsel */}
             <Image
-              src={IMAGES[current]}
+              src={IMAGES_DESKTOP[current]}
               alt=""
               fill
               priority={current === 0}
-              className="object-cover object-center"
+              className="hidden md:block object-cover object-center"
+              sizes="100vw"
+            />
+            {/* Mobil: portrait görsel (kırpma yok) */}
+            <Image
+              src={IMAGES_MOBILE[current]}
+              alt=""
+              fill
+              priority={current === 0}
+              className="block md:hidden object-cover object-center"
               sizes="100vw"
             />
           </motion.div>
@@ -139,7 +157,7 @@ export default function Hero() {
 
       {/* Line indicators */}
       <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
-        {IMAGES.map((_, i) => (
+        {IMAGES_DESKTOP.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
