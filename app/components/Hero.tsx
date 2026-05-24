@@ -11,7 +11,6 @@ const IMAGES_DESKTOP = [
   "/hero/hero-02.jpeg",
   "/hero/hero-03.jpeg",
   "/hero/hero-04.jpeg",
-  "/hero/hero-05.jpeg",
 ];
 
 const IMAGES_MOBILE = [
@@ -19,7 +18,6 @@ const IMAGES_MOBILE = [
   "/hero/hero-02-mobile.jpeg",
   "/hero/hero-03-mobile.jpeg",
   "/hero/hero-04-mobile.jpeg",
-  "/hero/hero-05-mobile.jpeg",
 ];
 
 const INTERVAL = 5000;
