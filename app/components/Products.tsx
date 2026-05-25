@@ -169,7 +169,7 @@ export default function Products() {
 
   return (
     <>
-      <section id="products" className="w-full py-20" style={{ backgroundColor: "var(--off-white)" }}>
+      <section id="products" className="w-full py-20" style={{ backgroundColor: "var(--white)" }}>
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

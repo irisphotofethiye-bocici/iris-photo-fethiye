@@ -18,10 +18,10 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <Products />
         <Features />
         <Process />
         <Moment />
-        <Products />
         <Gallery />
         <WeeklyContent />
         <ShareBar />

@@ -53,6 +53,13 @@ export default function Hero() {
     return () => { if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current); };
   }, []);
 
+  const handleImageClick = useCallback(() => {
+    advance(1);
+    setPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => setPaused(false), 5000);
+  }, [advance]);
+
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -72,6 +79,7 @@ export default function Hero() {
       onMouseLeave={() => setPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onClick={handleImageClick}
     >
       {/* Slider images */}
       <div className="absolute inset-0">
@@ -112,7 +120,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 max-w-6xl mx-auto px-4 py-12 md:py-20 w-full">
+      <div className="relative z-20 max-w-6xl mx-auto px-4 py-12 md:py-20 w-full" onClick={(e) => e.stopPropagation()}>
         <div className="max-w-xl">
           <motion.div
             initial={{ opacity: 0 }}
@@ -167,7 +175,7 @@ export default function Hero() {
       </div>
 
       {/* Line indicators */}
-      <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+      <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
         {IMAGES_DESKTOP.map((_, i) => (
           <button
             key={i}
