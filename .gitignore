@@ -48,3 +48,5 @@ test-*.png
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+testsprite_tests\tmp\config.json

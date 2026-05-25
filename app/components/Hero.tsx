@@ -28,6 +28,7 @@ export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const touchStartX = useRef<number | null>(null);
 
   const advance = useCallback((dir: 1 | -1) => {
@@ -39,6 +40,11 @@ export default function Hero() {
     timerRef.current = setInterval(() => advance(1), INTERVAL);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [paused, advance]);
+
+  // Cleanup pause timeout on unmount
+  useEffect(() => {
+    return () => { if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current); };
+  }, []);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -158,8 +164,15 @@ export default function Hero() {
         {IMAGES_DESKTOP.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrent(i)}
+            onClick={() => {
+              setCurrent(i);
+              // Pause auto-advance for 5s after manual navigation
+              setPaused(true);
+              if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+              pauseTimeoutRef.current = setTimeout(() => setPaused(false), 5000);
+            }}
             aria-label={`Slide ${i + 1}`}
+            aria-current={i === current ? "true" : undefined}
             className="transition-all duration-300"
             style={{
               width: "24px",

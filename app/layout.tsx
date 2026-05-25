@@ -92,6 +92,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable}`} suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content="wnSy0n8GAx4hTSycQIzH6Jjt9L-oAF5s12QJbZm1qaA" />
         <meta name="geo.region" content="TR-MU" />
         <meta name="geo.placename" content="Fethiye, Muğla, Turkey" />
         <meta name="geo.position" content="36.6218;29.1168" />

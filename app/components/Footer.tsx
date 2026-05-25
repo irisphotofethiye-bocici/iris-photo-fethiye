@@ -34,13 +34,6 @@ export default function Footer() {
           © {new Date().getFullYear()} Iris Photo Fethiye. {t("footer.rights")}
         </p>
 
-        <a
-          href="/admin"
-          className="font-body text-xs transition-colors hover:text-white"
-          style={{ color: "rgba(255,255,255,0.2)" }}
-        >
-          Admin
-        </a>
       </div>
     </footer>
   );

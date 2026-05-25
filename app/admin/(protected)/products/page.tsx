@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { Reorder } from "framer-motion";
 import { Upload, Trash2, ImageOff } from "lucide-react";
+import Toast from "@/app/admin/components/Toast";
 
 const PRODUCTS = [
   { id: "print", label: "Fine Art Print" },
@@ -22,6 +23,7 @@ export default function ProductsAdmin() {
     print: [], necklace: [], bracelet: [], keychain: [],
   });
   const [uploading, setUploading] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const load = useCallback(async () => {
@@ -57,10 +59,12 @@ export default function ProductsAdmin() {
       body: JSON.stringify({ url }),
     });
     await load();
+    setToast("Photo deleted successfully");
   };
 
   return (
     <div className="flex flex-col gap-6">
+      <Toast message={toast} onClose={() => setToast(null)} />
       <div>
         <h1 className="font-display font-semibold text-2xl" style={{ color: "var(--ink)" }}>Products</h1>
         <p className="font-body text-sm mt-1" style={{ color: "var(--mid)" }}>5 photo slots per product · max 10 MB</p>

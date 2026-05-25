@@ -9,7 +9,7 @@ import { useTheme } from "@/app/context/ThemeContext";
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { lang, setLang, t } = useLang();
+  const { lang, setLang, t, mounted } = useLang();
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -87,17 +87,19 @@ export default function Nav() {
           </button>
 
           {/* EN / TR toggle */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" suppressHydrationWarning>
             {(["en", "tr"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                aria-pressed={lang === l}
+                aria-pressed={mounted ? lang === l : l === "en"}
+                disabled={!mounted}
                 className="text-xs font-body font-medium px-2.5 py-1 rounded-full transition-colors"
                 style={{
                   backgroundColor: lang === l ? "var(--teal)" : "transparent",
                   color: lang === l ? "white" : "var(--muted)",
                   border: lang === l ? "none" : "1px solid var(--line)",
+                  cursor: mounted ? "pointer" : "default",
                 }}
               >
                 {l.toUpperCase()}

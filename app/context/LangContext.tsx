@@ -7,20 +7,24 @@ type LangContextType = {
   lang: Lang;
   setLang: (l: Lang) => void;
   t: (key: string) => string;
+  mounted: boolean;
 };
 
 const LangContext = createContext<LangContextType>({
   lang: "en",
   setLang: () => {},
   t: (key) => key,
+  mounted: false,
 });
 
 export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("iris-lang");
     if (saved === "en" || saved === "tr") setLangState(saved);
+    setMounted(true);
   }, []);
 
   const setLang = (l: Lang) => {
@@ -29,7 +33,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <LangContext.Provider value={{ lang, setLang, t: (key) => translate(lang, key) }}>
+    <LangContext.Provider value={{ lang, setLang, t: (key) => translate(lang, key), mounted }}>
       {children}
     </LangContext.Provider>
   );

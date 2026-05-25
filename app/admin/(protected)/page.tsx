@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { Trash2, Upload, ImageOff } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Toast from "@/app/admin/components/Toast";
 
 const basename = (url: string) => url.split("/").pop() ?? url;
 
@@ -12,6 +13,7 @@ export default function GalleryAdmin() {
   const [uploading, setUploading] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const load = useCallback(async () => {
@@ -42,6 +44,7 @@ export default function GalleryAdmin() {
     });
     setConfirmDelete(null);
     await load();
+    setToast("Photo deleted successfully");
   };
 
   const onDrop = (e: React.DragEvent) => {
@@ -140,6 +143,8 @@ export default function GalleryAdmin() {
           </AnimatePresence>
         </div>
       )}
+
+      <Toast message={toast} onClose={() => setToast(null)} />
 
       {/* Confirm delete dialog */}
       <AnimatePresence>
