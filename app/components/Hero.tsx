@@ -20,6 +20,13 @@ const IMAGES_MOBILE = [
   "/hero/hero-04-mobile.webp",
 ];
 
+const HERO_ALTS = [
+  "Iris macro photography — Iris Photo Fethiye studio, Ölüdeniz Art Street",
+  "Iris fine art print framed souvenir — Iris Photo Fethiye, Fethiye Turkey",
+  "Iris necklace handmade jewellery — Iris Photo Fethiye, Ölüdeniz",
+  "Customer holding iris bracelet souvenir — Iris Photo Fethiye, Art Street Fethiye",
+];
+
 const INTERVAL = 5000;
 const FADE_DURATION = 0.8;
 
@@ -80,7 +87,7 @@ export default function Hero() {
             {/* Masaüstü: landscape görsel */}
             <Image
               src={IMAGES_DESKTOP[current]}
-              alt=""
+              alt={HERO_ALTS[current]}
               fill
               priority={current === 0}
               className="hidden md:block object-cover object-center"
@@ -89,7 +96,7 @@ export default function Hero() {
             {/* Mobil: portrait görsel (kırpma yok) */}
             <Image
               src={IMAGES_MOBILE[current]}
-              alt=""
+              alt={HERO_ALTS[current]}
               fill
               priority={current === 0}
               className="block md:hidden object-cover object-center"

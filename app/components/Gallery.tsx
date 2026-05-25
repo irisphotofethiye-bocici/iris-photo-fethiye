@@ -6,13 +6,13 @@ import { useLang } from "@/app/context/LangContext";
 
 const photos = [
   { src: "/gallery/iris-01.webp", alt: "Iris Photo Fethiye — iris jewelry necklace" },
-  { src: "/gallery/iris-02.webp", alt: "Iris Photo Fethiye — portrait" },
+  { src: "/gallery/iris-02.webp", alt: "Close-up portrait during iris photography session, Ölüdeniz Art Street" },
   { src: "/gallery/iris-03.webp", alt: "Iris Photo Fethiye — iris jewelry bracelet" },
   { src: "/gallery/iris-04.webp", alt: "Iris Photo Fethiye — woman portrait" },
   { src: "/gallery/iris-05.webp", alt: "Iris Photo Fethiye — human iris macro" },
-  { src: "/gallery/iris-06.webp", alt: "Iris Photo Fethiye — luxury fashion" },
+  { src: "/gallery/iris-06.webp", alt: "Luxury fashion portrait with iris print souvenir — Fethiye Turkey" },
   { src: "/gallery/iris-07.webp", alt: "Iris Photo Fethiye — ultra close-up iris" },
-  { src: "/gallery/iris-08.webp", alt: "Iris Photo Fethiye — iris art" },
+  { src: "/gallery/iris-08.webp", alt: "Framed iris art print — unique souvenir from Iris Photo Fethiye" },
   { src: "/gallery/iris-09.webp", alt: "Iris Photo Fethiye — iris photography" },
   { src: "/gallery/iris-10.webp", alt: "Iris Photo Fethiye — fine art print" },
   { src: "/gallery/iris-11.webp", alt: "Iris Photo Fethiye — iris bracelet" },

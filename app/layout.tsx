@@ -27,7 +27,12 @@ export const metadata: Metadata = {
     "things to do Ölüdeniz, unique souvenir Fethiye, best souvenir Fethiye, unique souvenir Ölüdeniz, iris photography Fethiye, personalised gift Turkey, personalised souvenir Turkey, souvenir shop Ölüdeniz Art Street, unique gift Fethiye, handmade souvenir Turkey, after paragliding Ölüdeniz",
   metadataBase: new URL("https://www.irisphotofethiye.com"),
   alternates: {
-    canonical: "/",
+    canonical: "https://www.irisphotofethiye.com",
+    languages: {
+      "en": "https://www.irisphotofethiye.com",
+      "tr": "https://www.irisphotofethiye.com",
+      "x-default": "https://www.irisphotofethiye.com",
+    },
   },
   openGraph: {
     title: "Iris Photo Fethiye — Unique Souvenir in Ölüdeniz",
@@ -37,6 +42,7 @@ export const metadata: Metadata = {
     siteName: "Iris Photo Fethiye",
     type: "website",
     locale: "en_US",
+    alternateLocale: ["tr_TR"],
     images: [
       {
         url: "/og-image.jpg",
@@ -56,35 +62,107 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Iris Photo Fethiye",
-  image: "https://www.irisphotofethiye.com/og-image.jpg",
-  telephone: "+905427469297",
-  email: "irisphotofethiye@gmail.com",
-  url: "https://www.irisphotofethiye.com",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Ölüdeniz Art Street",
-    addressLocality: "Fethiye",
-    addressRegion: "Muğla",
-    addressCountry: "TR",
-  },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday", "Tuesday", "Wednesday", "Thursday",
-      "Friday", "Saturday", "Sunday",
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "TouristAttraction"],
+    name: "Iris Photo Fethiye",
+    description:
+      "Free iris photography studio at Ölüdeniz Art Street, Fethiye. Fine art prints, iris necklaces, bracelets and keychains — the most unique souvenir in Turkey.",
+    image: "https://www.irisphotofethiye.com/og-image.jpg",
+    priceRange: "€€",
+    telephone: "+905427469297",
+    email: "irisphotofethiye@gmail.com",
+    url: "https://www.irisphotofethiye.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Ölüdeniz Art Street",
+      addressLocality: "Fethiye",
+      addressRegion: "Muğla",
+      addressCountry: "TR",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 36.6218,
+      longitude: 29.1168,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday", "Tuesday", "Wednesday", "Thursday",
+          "Friday", "Saturday", "Sunday",
+        ],
+        opens: "15:00",
+        closes: "24:00",
+      },
     ],
-    opens: "15:00",
-    closes: "24:00",
+    sameAs: [
+      "https://instagram.com/irisphotofethiye",
+      "https://facebook.com/irisphotofethiye",
+    ],
   },
-  sameAs: [
-    "https://instagram.com/irisphotofethiye",
-    "https://facebook.com/irisphotofethiye",
-  ],
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Iris Fine Art Print",
+    description:
+      "Professional macro photograph of your own iris, printed as a fine art souvenir. Free iris photography session included. Available at Ölüdeniz Art Street, Fethiye.",
+    image: "https://www.irisphotofethiye.com/products/print-01.webp",
+    brand: { "@type": "Brand", name: "Iris Photo Fethiye" },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "EUR",
+      seller: { "@type": "LocalBusiness", name: "Iris Photo Fethiye" },
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Iris Necklace",
+    description:
+      "Handmade necklace featuring a macro photograph of your own iris. Unique personalised jewellery souvenir from Fethiye, Turkey.",
+    image: "https://www.irisphotofethiye.com/products/necklace-01.webp",
+    brand: { "@type": "Brand", name: "Iris Photo Fethiye" },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "EUR",
+      seller: { "@type": "LocalBusiness", name: "Iris Photo Fethiye" },
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Iris Bracelet",
+    description:
+      "Handcrafted bracelet with your iris macro photo encased inside. A truly personal and unique souvenir from Ölüdeniz, Turkey.",
+    image: "https://www.irisphotofethiye.com/products/bracelet-01.webp",
+    brand: { "@type": "Brand", name: "Iris Photo Fethiye" },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "EUR",
+      seller: { "@type": "LocalBusiness", name: "Iris Photo Fethiye" },
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Iris Keychain",
+    description:
+      "Custom keychain with a macro photograph of your iris. Compact, unique and personal souvenir from Iris Photo Fethiye, Ölüdeniz Art Street.",
+    image: "https://www.irisphotofethiye.com/products/keychain-01.webp",
+    brand: { "@type": "Brand", name: "Iris Photo Fethiye" },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "EUR",
+      seller: { "@type": "LocalBusiness", name: "Iris Photo Fethiye" },
+    },
+  },
+];
 
 export default function RootLayout({
   children,
@@ -97,6 +175,8 @@ export default function RootLayout({
         <meta name="geo.placename" content="Fethiye, Muğla, Turkey" />
         <meta name="geo.position" content="36.6218;29.1168" />
         <meta name="ICBM" content="36.6218, 29.1168" />
+        <link rel="preconnect" href="https://maps.google.com" />
+        <link rel="dns-prefetch" href="https://maps.google.com" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=localStorage.getItem('iris-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',s||p);}catch(e){}})();`,
