@@ -102,66 +102,6 @@ const jsonLd = [
       "https://facebook.com/irisphotofethiye",
     ],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "Iris Fine Art Print",
-    description:
-      "Professional macro photograph of your own iris, printed as a fine art souvenir. Free iris photography session included. Available at Ölüdeniz Art Street, Fethiye.",
-    image: "https://www.irisphotofethiye.com/products/print-01.webp",
-    brand: { "@type": "Brand", name: "Iris Photo Fethiye" },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "EUR",
-      seller: { "@type": "LocalBusiness", name: "Iris Photo Fethiye" },
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "Iris Necklace",
-    description:
-      "Handmade necklace featuring a macro photograph of your own iris. Unique personalised jewellery souvenir from Fethiye, Turkey.",
-    image: "https://www.irisphotofethiye.com/products/necklace-01.webp",
-    brand: { "@type": "Brand", name: "Iris Photo Fethiye" },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "EUR",
-      seller: { "@type": "LocalBusiness", name: "Iris Photo Fethiye" },
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "Iris Bracelet",
-    description:
-      "Handcrafted bracelet with your iris macro photo encased inside. A truly personal and unique souvenir from Ölüdeniz, Turkey.",
-    image: "https://www.irisphotofethiye.com/products/bracelet-01.webp",
-    brand: { "@type": "Brand", name: "Iris Photo Fethiye" },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "EUR",
-      seller: { "@type": "LocalBusiness", name: "Iris Photo Fethiye" },
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "Iris Keychain",
-    description:
-      "Custom keychain with a macro photograph of your iris. Compact, unique and personal souvenir from Iris Photo Fethiye, Ölüdeniz Art Street.",
-    image: "https://www.irisphotofethiye.com/products/keychain-01.webp",
-    brand: { "@type": "Brand", name: "Iris Photo Fethiye" },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "EUR",
-      seller: { "@type": "LocalBusiness", name: "Iris Photo Fethiye" },
-    },
-  },
 ];
 
 export default function RootLayout({
