@@ -38,7 +38,7 @@ export default function Moment() {
   };
 
   return (
-    <section className="w-full py-20" style={{ backgroundColor: "var(--white)" }}>
+    <section className="w-full py-20" style={{ backgroundColor: "var(--off-white)" }}>
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Slideshow */}

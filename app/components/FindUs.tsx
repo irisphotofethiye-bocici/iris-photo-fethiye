@@ -25,7 +25,7 @@ export default function FindUs() {
     <section
       id="find-us"
       className="w-full py-20"
-      style={{ backgroundColor: "var(--ink)" }}
+      style={{ backgroundColor: "#1A2A26" }}
     >
       <div className="max-w-6xl mx-auto px-4">
         <motion.div

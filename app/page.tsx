@@ -19,9 +19,9 @@ export default function Home() {
       <main>
         <Hero />
         <Products />
+        <Moment />
         <Features />
         <Process />
-        <Moment />
         <Gallery />
         <WeeklyContent />
         <ShareBar />
