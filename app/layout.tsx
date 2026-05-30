@@ -70,7 +70,6 @@ const jsonLd = [
     description:
       "Free iris photography studio at Ölüdeniz Art Street, Fethiye. Fine art prints, iris necklaces, bracelets and keychains — the most unique souvenir in Turkey.",
     image: "https://www.irisphotofethiye.com/og-image.jpg",
-    priceRange: "€€",
     telephone: "+905427469297",
     email: "irisphotofethiye@gmail.com",
     url: "https://www.irisphotofethiye.com",
